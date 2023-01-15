@@ -44,41 +44,66 @@ function firstValue() {
   }
   return oldSpan;
 }
-firstValue(oldSpan);
 
-console.log(oldSpan);
-console.log(oldSpan.length);
+firstValue();
 
-function newCourses() {
-  let newCourses = [];
-  for (let i = 0; i < currencyPairsPrice.length; i++) {
-    fetch(
-      `https://currency-exchange.p.rapidapi.com/exchange?from=${currencyPairsPrice[i]}&to=${coineTwo}&q=1.0`,
-      options
-    )
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        newCourses.push(`${data.toFixed(2)}`);
-      });
-  }
-  return newCourses;
-}
+// News-Slider API script part
 
-let updateSpan = newCourses();
-console.log(updateSpan);
-console.log(updateSpan.length);
+// this option to take info
+let API_KEY = `46bf7938af1a4d51a5d7f2e990d61c41`;
+const date = new Date();
 
-function cicleUpdateCourse(oldSpan, updateSpan) {
-  for (let i = 0; i < currencyPairsPrice.length; i++) {
-    if (oldSpan[i] !== updateSpan[i]) {
-      let newValue = document.querySelector(`.currencyCell${i}`);
-      newValue.innerHTML = updateSpan[i];
+let dateToday = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+
+let url =
+  "https://newsapi.org/v2//top-headlines?" +
+  "country=us&category=business&" +
+  `from=${dateToday}&` +
+  "sortBy=popularity&" +
+  `apiKey=${API_KEY}`;
+
+let req = fetch(url).then((response) => response.json());
+// part two - render information
+console.log(req);
+
+function lengthStr(str) {
+  let newArr = str.split("");
+  let result = [];
+  for (let i = 0; i < newArr.length; i++) {
+    if (i != 150) {
+      result.push(newArr[i]);
+    } else {
+      break;
     }
   }
+  return `${result.join("")}...`;
 }
 
-setInterval(newCourses(), 5000);
+req.then(function (data) {
+  for (let i = 0; i < 25; i++) {
+    // newsArr.push([data.articles[i].title, data.articles[i].description, data.articles[i].author, data.articles[i].urlToImage])
+    let renderDIVParent = document.querySelector(".swiper-wrapper");
+    let renderDIVChild = document.createElement("div");
+    renderDIVChild.classList.add("swiper-slide");
+    let h3 = document.createElement("h3");
+    let p = document.createElement("p");
+    let img = document.createElement("img");
 
-setInterval(cicleUpdateCourse(), 5000);
+    let a = document.createElement("a");
+    // renderDIVChild.classList.add("swiper-slide");
+    a.classList.add("news-url");
+    a.target = "_blank";
+    h3.classList.add("news-title");
+    p.classList.add("news-text");
+    img.src = `${data.articles[i].urlToImage}`;
+    h3.innerHTML = `${data.articles[i].title}`;
+    p.innerHTML = `${lengthStr(data.articles[i].description)}`;
+    a.href = `${data.articles[i].url}`;
+    a.append(p);
+    renderDIVChild.append(img, h3, a);
+    renderDIVParent.append(renderDIVChild);
+  }
+  return;
+});
+
+let imgErrore = document.createElement("img");
