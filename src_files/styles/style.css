@@ -695,6 +695,8 @@ hr {
   .welcome_block__right-column {
     grid-column-gap: 20px;
     grid-row-gap: 20px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .card {
@@ -844,7 +846,7 @@ hr {
   }
 
   .card {
-    width: 440px;
+    width: 430px;
   }
 
   .welcome_block__left-column {
