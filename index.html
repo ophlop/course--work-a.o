@@ -307,29 +307,25 @@
     <script src="./src_files/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
     <script>
-      let widthScreen = window.innerWidth;
-      let sliders;
-      let gap;
-      let disableAuto;
-
-      if (950 < widthScreen) {
-        sliders = 3;
-        gap = 80;
-      } else if (500 < widthScreen && widthScreen < 950) {
-        sliders = 3;
-        gap = 40;
-      } else if (widthScreen < 500) {
-        sliders = 1;
-        gap = 50;
-      }
-
       var swiper = new Swiper(".mySwiper", {
-        slidesPerView: sliders,
-        spaceBetween: gap,
+        slidesPerView: 3,
+        spaceBetween: 80,
         cssMode: true,
         breakpoints: {
+          500: {
+            autoplay: false,
+            spaceBetween: 20,
+            slidesPerView: 2,
+          },
+          700: {
+            autoplay: false,
+            spaceBetween: 60,
+            slidesPerView: 2,
+          },
           1000: {
             autoplay: false,
+            spaceBetween: 80,
+            slidesPerView: 3,
           },
         },
         navigation: {
