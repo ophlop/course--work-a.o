@@ -336,9 +336,10 @@ header {
 
 .swiper {
   width: 1300px;
-  height: auto;
+  height: 448px;
   padding-top: 46px;
   padding-bottom: 20px;
+  margin-bottom: 60px;
 }
 
 .swiper-slide {
@@ -371,7 +372,7 @@ header {
   height: 120px;
   object-fit: cover;
   background-color: rgb(34, 24, 24);
-  background-image: url("./imgUrlBroken.png");
+  background-image: url("../img/imgUrlBroken.png");
   background-repeat: no-repeat;
   margin: 32px;
 }
@@ -457,6 +458,7 @@ header {
 @media (max-width: 950px) {
   .swiper {
     width: 700px;
+    gap: 40px;
   }
 
   .swiper-slide {
@@ -475,9 +477,9 @@ header {
 
   .swiper-pagination {
     display: flex;
-    position: relative;
+    position: relative !important;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 0px;
   }
 }
 @media (max-width: 500px) {
@@ -493,6 +495,7 @@ header {
   .swiper-slide > img {
     width: 300 !important;
     margin: 20px;
+    margin-left: 20px !important;
   }
 }
 
