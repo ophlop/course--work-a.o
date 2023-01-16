@@ -14,8 +14,6 @@ let currencyPairsPrice = ["USD", "EUR", "CNY", "CHF", "JPY", "TRY"];
 
 let renderDIVParent = document.querySelector(".left-row__course-info");
 
-let oldSpan = [];
-
 function firstValue() {
   for (let i = 0; i < currencyPairsPrice.length; i++) {
     let renderDIVChild = document.createElement("div");
@@ -34,18 +32,28 @@ function firstValue() {
         return response.json();
       })
       .then((data) => {
-        oldSpan.push(`${data.toFixed(2)}`);
-        console.log(oldSpan);
         span2.innerHTML = `${data.toFixed(2)}`;
       })}`;
     renderDIVChild.appendChild(span1);
     renderDIVChild.appendChild(span2);
     renderDIVParent.appendChild(renderDIVChild);
   }
-  return oldSpan;
 }
 
-firstValue();
+window.addEventListener("load", (event) => {
+  firstValue();
+});
+
+setTimeout(
+  setInterval(function repeatCurrency() {
+    for (let j = 0; j < 6; j++) {
+      let removeElements = document.querySelector(".left-row__course-card");
+      removeElements.remove();
+    }
+    firstValue();
+  }, 15000),
+  15000
+);
 
 // News-Slider API script part
 
@@ -88,9 +96,7 @@ req.then(function (data) {
     let h3 = document.createElement("h3");
     let p = document.createElement("p");
     let img = document.createElement("img");
-
     let a = document.createElement("a");
-    // renderDIVChild.classList.add("swiper-slide");
     a.classList.add("news-url");
     a.target = "_blank";
     h3.classList.add("news-title");
@@ -105,5 +111,3 @@ req.then(function (data) {
   }
   return;
 });
-
-let imgErrore = document.createElement("img");
