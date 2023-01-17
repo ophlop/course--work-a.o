@@ -72,7 +72,7 @@ let url =
 
 let req = fetch(url).then((response) => response.json());
 // part two - render information
-console.log(req);
+let news = [];
 
 function lengthStr(str) {
   let newArr = str.split("");
@@ -87,27 +87,57 @@ function lengthStr(str) {
   return `${result.join("")}...`;
 }
 
-req.then(function (data) {
-  for (let i = 0; i < 25; i++) {
-    // newsArr.push([data.articles[i].title, data.articles[i].description, data.articles[i].author, data.articles[i].urlToImage])
-    let renderDIVParent = document.querySelector(".swiper-wrapper");
-    let renderDIVChild = document.createElement("div");
-    renderDIVChild.classList.add("swiper-slide");
-    let h3 = document.createElement("h3");
-    let p = document.createElement("p");
-    let img = document.createElement("img");
-    let a = document.createElement("a");
-    a.classList.add("news-url");
-    a.target = "_blank";
-    h3.classList.add("news-title");
-    p.classList.add("news-text");
-    img.src = `${data.articles[i].urlToImage}`;
-    h3.innerHTML = `${data.articles[i].title}`;
-    p.innerHTML = `${lengthStr(data.articles[i].description)}`;
-    a.href = `${data.articles[i].url}`;
-    a.append(p);
-    renderDIVChild.append(img, h3, a);
-    renderDIVParent.append(renderDIVChild);
-  }
-  return;
-});
+function showActualNews(req) {
+  req
+    .then((data) => (news = data.articles))
+    .then(() => {
+      let renderDIVParent = document.querySelector(".swiper-wrapper");
+      let requests = news.map((el) => {
+        if (!el.urlToImage) el.urlToImage = "./src_files/img/imgUrlBroken.png";
+        return new Promise(function (resolve) {
+          let img = new Image();
+          img.onerror = img.onabort = function () {
+            el.urlToImage = "./src_files/img/imgUrlBroken.png";
+            resolve("error");
+          };
+          img.onload = function () {
+            resolve("success");
+          };
+          img.src = el.urlToImage;
+        });
+      });
+      Promise.all(requests).then(() => {
+        for (let i = 0; i < news.length; i++) {
+          let renderDIVChild = document.createElement("div");
+          let h3 = document.createElement("h3");
+          let p = document.createElement("p");
+          let img = document.createElement("img");
+          let a = document.createElement("a");
+          // inside options
+          renderDIVChild.classList.add("swiper-slide");
+          // img settings
+          img.classList.add("news-img");
+          img.src = `${news[i].urlToImage}`;
+          img.alt = "news-image";
+          // h3 settings
+          h3.classList.add("news-title");
+          h3.innerHTML = `${
+            news[i].title ? news[i].title : "Title not avaliable"
+          }`;
+          // a settings
+          a.classList.add("news-url");
+          a.target = "_blank";
+          a.href = `${news[i].url}`;
+          // p settings
+          p.classList.add("news-text");
+          p.innerHTML = `${lengthStr(news[i].description)}`;
+          // render
+          a.append(p);
+          renderDIVChild.append(img, h3, a);
+          renderDIVParent.append(renderDIVChild);
+        }
+      });
+    });
+}
+
+setInterval(showActualNews(req), 15000);
