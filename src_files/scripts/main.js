@@ -71,6 +71,7 @@ let url =
   `apiKey=${API_KEY}`;
 
 let req = fetch(url).then((response) => response.json());
+
 // part two - render information
 let news = [];
 
@@ -78,7 +79,7 @@ function lengthStr(str) {
   let newArr = str.split("");
   let result = [];
   for (let i = 0; i < newArr.length; i++) {
-    if (i != 150) {
+    if (i != 120) {
       result.push(newArr[i]);
     } else {
       break;
@@ -107,7 +108,7 @@ function showActualNews(req) {
         });
       });
       Promise.all(requests).then(() => {
-        for (let i = 0; i < news.length; i++) {
+        for (let i = 0; i < 25; i++) {
           let renderDIVChild = document.createElement("div");
           let h3 = document.createElement("h3");
           let p = document.createElement("p");
@@ -140,4 +141,5 @@ function showActualNews(req) {
     });
 }
 
-setInterval(showActualNews(req), 15000);
+
+showActualNews(req);
