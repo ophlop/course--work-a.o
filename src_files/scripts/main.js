@@ -72,6 +72,20 @@ let url =
 
 let req = fetch(url).then((response) => response.json());
 
+
+
+function rightDay() {
+  let parentDivText = document.querySelector(".right-row__data-info");
+  let updatedText = document.createElement("p");
+  updatedText.classList.add(".data-info__light-text");
+  let monthCorrect = date.getMonth()
+  monthCorrect = monthCorrect.length = 1 ? `0${monthCorrect+ 1}`  : `${monthCorrect+ 1}`
+  updatedText.innerHTML = `Update every 15 minutes, MSC ${date.getDate()}.${monthCorrect}.${date.getFullYear()}`
+  parentDivText.appendChild(updatedText)
+}
+
+rightDay()
+
 // part two - render information
 let news = [];
 
