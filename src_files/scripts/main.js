@@ -91,20 +91,16 @@ let news = [];
 
 function lengthStr(str) { 
   if(!str && str !== null) {
+    return str
+} else {
+
   let newArr = str.split("");
   let result = [];
-  for (let i = 0; i < newArr.length; i++) {
-    if (i != 120) {
+  for (let i = 0; i < 120; i++) {
       result.push(newArr[i]);
-    } else {
-      break;
-    }
   }
   return `${result.join("")}...`;
-} else {
-  return str
-}
-}
+}}
 
 function showActualNews(req) {
   req
@@ -151,8 +147,8 @@ function showActualNews(req) {
           p.classList.add("news-text");
           p.innerHTML = `${lengthStr(news[i].description)}`;
           // render
-          a.append(p);
-          renderDIVChild.append(img, h3, a);
+          a.append(img, h3, p);
+          renderDIVChild.append(a);
           renderDIVParent.append(renderDIVChild);
         }
       });
