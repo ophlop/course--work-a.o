@@ -64,7 +64,7 @@ const date = new Date();
 let dateToday = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
 
 let url =
-  "https://newsapi.org/v2//top-headlines?" +
+  "https://newsapi.org/v2/top-headlines?" +
   "country=us&category=business&" +
   `from=${dateToday}&` +
   "sortBy=popularity&" +
@@ -75,7 +75,8 @@ let req = fetch(url).then((response) => response.json());
 // part two - render information
 let news = [];
 
-function lengthStr(str) {
+function lengthStr(str) { 
+  if(!str && str !== null) {
   let newArr = str.split("");
   let result = [];
   for (let i = 0; i < newArr.length; i++) {
@@ -86,6 +87,9 @@ function lengthStr(str) {
     }
   }
   return `${result.join("")}...`;
+} else {
+  return str
+}
 }
 
 function showActualNews(req) {
@@ -141,5 +145,4 @@ function showActualNews(req) {
     });
 }
 
-
-showActualNews(req);
+showActualNews(req)
