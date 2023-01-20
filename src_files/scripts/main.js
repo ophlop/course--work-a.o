@@ -162,19 +162,14 @@ document.addEventListener("DOMContentLoaded", function sliderFunctionality() {
   let sliderPosition = 0;
   const sliderContainer = document.querySelector(".swiper-news");
   const sliderTrack = document.querySelector(".swiper-wrapper");
-  const sliderItem = document.querySelector(".swiper-slide");
   const sliderItemWidth = 320;
   const sliderContainerWidth = sliderContainer.offsetWidth;
-  // // ширина дорожки определяется как разница между шириной всех картинок и шириной контейнера
-  // // разница нужна для того, чтобы прокрутка не проводилась дальше последнего фото
   const sliderTrackWidth = 20 * sliderItemWidth - sliderContainerWidth;
   const sliderButtonPrev = document.querySelector(".button-prev");
   const sliderButtonNext = document.querySelector(".button-next");
 
   sliderButtonPrev.addEventListener("click", function () {
-    sliderPosition += sliderItemWidth; // увеличиваем отступ при нажатии назад
-    //     // поскольку отступ будет всегда отрицательный, нужно сравнивать с нулем,
-    //     // чтобы исключить пустые прокрутки
+    sliderPosition += sliderItemWidth; 
     if (sliderPosition > 0) {
       sliderPosition = 0;
     }
@@ -183,15 +178,13 @@ document.addEventListener("DOMContentLoaded", function sliderFunctionality() {
   });
   sliderButtonNext.addEventListener("click", function () {
     sliderPosition -= sliderItemWidth;
-    //     // так как отступы отрицательные, нужно сравнить с отрицательной длинной дорожки,
-    //     // чтобы исключить пустые прокрутки
     if (sliderPosition < -sliderTrackWidth) {
       sliderPosition = -sliderTrackWidth;
     }
     sliderTrack.style.transform = `translateX(${sliderPosition}px`;
     sliderButtons();
   });
-  // // скрываем кнопки prev/next, когда нельзя больше крутить
+
   const sliderButtons = () => {
     if (sliderPosition == 0) {
       sliderButtonPrev.classList.add("enable-button");
