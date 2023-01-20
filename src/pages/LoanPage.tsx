@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function LoanPage(): JSX.Element {
-  return (
-    <div>LoanPage</div>
-  )
-}
+const LoanPage: React.FC = () => {
+  return <div>LoanPage</div>;
+};
 
-export default LoanPage();
+export default LoanPage;
