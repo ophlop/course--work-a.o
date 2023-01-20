@@ -12,8 +12,8 @@ Third module - ....
 
 Technology stack used on this project:
 <ul>
-<li>HTML/CSS </li>
-<li>JavaScript -> TypeScript (soon)</li>
-<li>React (soon)</li>
+<li>HTML/CSS - done</li>
+<li>JavaScript -> </li>
+<li>React with Typescript (in work)</li>
 <li>Redux (soon)</li>
 </ul>
