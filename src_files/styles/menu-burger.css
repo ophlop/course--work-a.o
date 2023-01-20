@@ -95,10 +95,19 @@
   .hamburger-menu {
     display: contents;
   }
+
+  .hamburger-menu__menu_btn {
+    right: -204px;
+  }
 }
 
 @media (max-width: 550px) {
   .menu_box__menu_item {
     font-size: 30px;
+  }
+
+  .hamburger-menu__menu_btn {
+    right: -50px;
+    width: 20px;
   }
 }

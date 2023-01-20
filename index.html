@@ -12,10 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap"
     />
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
-    />
-    <link
       href="https://neostudy.neoflex.ru/pluginfile.php/1/theme_photon/favicon/1670746156/favicon_alpha.ico"
       rel="shortcut icon"
       type="image/x-icon"
@@ -137,8 +133,7 @@
               </h6>
             </div>
             <div class="money-course-block__right-row">
-              <div class="right-row__data-info">
-              </div>
+              <div class="right-row__data-info"></div>
               <img
                 class="right-row__bank-icon"
                 src="./src_files/img/Vector_bank.png"
@@ -175,13 +170,14 @@
               clicking on the news you are interested in.
             </p>
           </div>
-          <div class="swiper mySwiper swiper-height">
-            <div class="swiper-wrapper" style="overflow-y: hidden"></div>
+          <div class="displaySlider">
+            <div class="swiper-news">
+              <div class="swiper-wrapper"></div>
+            </div>
           </div>
-          <div class="swiper-pagination"></div>
           <div class="group-btn">
-            <button class="button-prev slider-button"></button>
-            <button class="button-next slider-button"></button>
+            <button class="button-prev slider-button enable-button"></button>
+            <button class="button-next slider-button enable-button"></button>
           </div>
         </section>
 
@@ -302,28 +298,5 @@
       </div>
     </footer>
     <script src="./src_files/scripts/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script>
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 80,
-        cssMode: true,
-        navigation: {
-          prevEl: ".button-prev",
-          nextEl: ".button-next",
-        },
-        mousewheel: true,
-        keyboard: true,
-        autoplay: {
-          autoplay: true,
-          delay: 7500,
-          disableOnInteraction: false,
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-      });
-    </script>
   </body>
 </html>

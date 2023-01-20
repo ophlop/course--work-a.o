@@ -51,8 +51,8 @@ setTimeout(
       removeElements.remove();
     }
     firstValue();
-  }, 15000),
-  15000
+  }, 900000),
+  900000
 );
 
 // News-Slider API script part
@@ -72,35 +72,35 @@ let url =
 
 let req = fetch(url).then((response) => response.json());
 
-
-
 function rightDay() {
   let parentDivText = document.querySelector(".right-row__data-info");
   let updatedText = document.createElement("p");
   updatedText.classList.add(".data-info__light-text");
-  let monthCorrect = date.getMonth()
-  monthCorrect = monthCorrect.length = 1 ? `0${monthCorrect+ 1}`  : `${monthCorrect+ 1}`
-  updatedText.innerHTML = `Update every 15 minutes, MSC ${date.getDate()}.${monthCorrect}.${date.getFullYear()}`
-  parentDivText.appendChild(updatedText)
+  let monthCorrect = date.getMonth();
+  monthCorrect = monthCorrect.length = 1
+    ? `0${monthCorrect + 1}`
+    : `${monthCorrect + 1}`;
+  updatedText.innerHTML = `Update every 15 minutes, MSC ${date.getDate()}.${monthCorrect}.${date.getFullYear()}`;
+  parentDivText.appendChild(updatedText);
 }
 
-rightDay()
+rightDay();
 
 // part two - render information
 let news = [];
 
-function lengthStr(str) { 
-  if(!str && str !== null) {
-    return str
-} else {
-
-  let newArr = str.split("");
-  let result = [];
-  for (let i = 0; i < 120; i++) {
+function lengthStr(str) {
+  if (!str && str !== null) {
+    return str;
+  } else {
+    let newArr = str.split("");
+    let result = [];
+    for (let i = 0; i < 120; i++) {
       result.push(newArr[i]);
+    }
+    return `${result.join("")}...`;
   }
-  return `${result.join("")}...`;
-}}
+}
 
 function showActualNews(req) {
   req
@@ -124,12 +124,13 @@ function showActualNews(req) {
       Promise.all(requests).then(() => {
         for (let i = 0; i < 25; i++) {
           let renderDIVChild = document.createElement("div");
+          renderDIVChild.classList.add("swiper-slide");
           let h3 = document.createElement("h3");
           let p = document.createElement("p");
           let img = document.createElement("img");
           let a = document.createElement("a");
           // inside options
-          renderDIVChild.classList.add("swiper-slide");
+          renderDIVChild.classList.add("swiper-news");
           // img settings
           img.classList.add("news-img");
           img.src = `${news[i].urlToImage}`;
@@ -155,4 +156,53 @@ function showActualNews(req) {
     });
 }
 
-showActualNews(req)
+showActualNews(req);
+
+document.addEventListener("DOMContentLoaded", function sliderFunctionality() {
+  let sliderPosition = 0;
+  const sliderContainer = document.querySelector(".swiper-news");
+  const sliderTrack = document.querySelector(".swiper-wrapper");
+  const sliderItem = document.querySelector(".swiper-slide");
+  const sliderItemWidth = 320;
+  const sliderContainerWidth = sliderContainer.offsetWidth;
+  // // ширина дорожки определяется как разница между шириной всех картинок и шириной контейнера
+  // // разница нужна для того, чтобы прокрутка не проводилась дальше последнего фото
+  const sliderTrackWidth = 20 * sliderItemWidth - sliderContainerWidth;
+  const sliderButtonPrev = document.querySelector(".button-prev");
+  const sliderButtonNext = document.querySelector(".button-next");
+
+  sliderButtonPrev.addEventListener("click", function () {
+    sliderPosition += sliderItemWidth; // увеличиваем отступ при нажатии назад
+    //     // поскольку отступ будет всегда отрицательный, нужно сравнивать с нулем,
+    //     // чтобы исключить пустые прокрутки
+    if (sliderPosition > 0) {
+      sliderPosition = 0;
+    }
+    sliderTrack.style.transform = `translateX(${sliderPosition}px`;
+    sliderButtons();
+  });
+  sliderButtonNext.addEventListener("click", function () {
+    sliderPosition -= sliderItemWidth;
+    //     // так как отступы отрицательные, нужно сравнить с отрицательной длинной дорожки,
+    //     // чтобы исключить пустые прокрутки
+    if (sliderPosition < -sliderTrackWidth) {
+      sliderPosition = -sliderTrackWidth;
+    }
+    sliderTrack.style.transform = `translateX(${sliderPosition}px`;
+    sliderButtons();
+  });
+  // // скрываем кнопки prev/next, когда нельзя больше крутить
+  const sliderButtons = () => {
+    if (sliderPosition == 0) {
+      sliderButtonPrev.classList.add("enable-button");
+    } else {
+      sliderButtonPrev.classList.remove("enable-button");
+    }
+    if (sliderPosition == -sliderTrackWidth) {
+      sliderButtonNext.classList.add("enable-button");
+    } else {
+      sliderButtonNext.classList.remove("enable-button");
+    }
+  };
+  sliderButtons();
+});
