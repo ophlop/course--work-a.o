@@ -8,7 +8,7 @@ First module - Develop index page using HTML/CSS
 <br>
 Second module - Add to this page JavaScript
 <br>
-Third module - ....
+Third module - Migrate site to React with Typescript
 
 Technology stack used on this project:
 <ul>
