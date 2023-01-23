@@ -1,0 +1,27 @@
+.btn-main {
+    position: relative;
+    padding: 8px;
+    width: fit-content;
+    height: 50px;
+    background: #003cff;
+    border: 0;
+    border-radius: 16px;
+  }
+  
+  .btn-main:hover {
+    background-color: #7796c0;
+    cursor: pointer;
+  }
+  
+  .btn-main > .url-style {
+    margin-top: 10px;
+    background-color: transparent;
+    color: white;
+    font-family: "Ubuntu";
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 112%;
+    letter-spacing: 0.02em;
+    margin-left: 7px;
+    margin-right: 7px;
+  }

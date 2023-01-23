@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
+import { Routes, Route} from "react-router-dom";
+import Header from './components/Header/Header'
+import Footer from './components/Footer/Footer'
+import MainPage from './pages/MainPage';
+import LoanPage from './pages/LoanPage';
 
-import { Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import LoanPage from "./pages/LoanPage";
-import MainPage from "./pages/MainPage";
 
 function App() {
   return (
-    <div className="bg-[#f5f4ff] h-screen">
+    <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<MainPage />}></Route>
-        <Route path="loan" element={<LoanPage />}></Route>
+        <Route path="/" element={<MainPage />}/>
+        <Route path="/loan" element={<LoanPage />}/>
       </Routes>
       <Footer />
     </div>

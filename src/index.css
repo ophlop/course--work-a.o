@@ -1,3 +1,26 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+* {
+  background-color: transparent;
+  font-family: "Ubuntu";
+  text-decoration: none;
+  color: #1c1c1e;
+}
+
+a,
+p,
+span {
+  font-family: "Ubuntu";
+}
+
+body {
+  margin: 0;
+  font-family: 'Ubuntu'
+}
+
+.container > header,
+.container > section,
+footer > .container {
+  max-width: 1300px;
+  min-width: 600px;
+  position: relative;
+  margin: auto;
+}
