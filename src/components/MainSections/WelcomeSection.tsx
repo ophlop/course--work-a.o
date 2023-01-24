@@ -1,8 +1,12 @@
 import React from 'react'
+import './WelcomeSection.css'
+
 
 const WelcomeSection: React.FC = () => {
   return (
-    <div>WelcomeSection</div>
+    <div className='container'>
+
+    </div>
   )
 }
 

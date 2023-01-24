@@ -4,7 +4,7 @@ const map = require('../../images/Huge Global.png')
 
 const MapSection: React.FC = () => {
   return (
-    <div className='container'>
+    <div className='container map-container'>
     <section className="map">
     <div className="map__header">
       <h3 className="map__title">
