@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './Footer.css'
-import imgLogo from '../../images/logo.png'
+const imgLogo = require('../../images/logo.png')
 
 const Footer: React.FC = () => {
   return (

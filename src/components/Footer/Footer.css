@@ -62,6 +62,7 @@ footer {
     letter-spacing: 0.02em;
     padding-left: 0;
     width: 100%;
+    list-style: none;
   }
   
   .footer__nav-menu > li,
@@ -75,6 +76,7 @@ footer {
     flex-grow: 0;
     line-height: 147.4%;
     font-weight: 500;
+    
   }
   
   .footer__text {

@@ -1,9 +1,10 @@
 import React from 'react'
-// import './MainStyles.css'
-// import map from '../../images/Huge Global.png'
+import './MapSection.css'
+const map = require('../../images/Huge Global.png')
 
 const MapSection: React.FC = () => {
   return (
+    <div className='container'>
     <section className="map">
     <div className="map__header">
       <h3 className="map__title">
@@ -16,11 +17,12 @@ const MapSection: React.FC = () => {
     <div className="map__map-block">
       <img
         className="map-img"
-        // src={map}
+        src={map}
         alt="minimalistic-map"
       />
     </div>
   </section>
+  </div>
   )
 }
 
