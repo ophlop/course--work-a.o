@@ -7,6 +7,7 @@ import LoanPage from './pages/LoanPage';
 
 
 function App() {
+
   return (
     <div className="App">
       <Header />
